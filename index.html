@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Javascript Objects</title>
+</head>
+<body>
+	<div id="paragraph">
+		<button onclick="myFunction()" id="tryme">Captain's Speech</button>
+	</div>
+	<script> 
+		//Creates an object named 'obj'
+		var obj = { 
+			brandName: 'Nissan',
+			modelName: 'GTR'
+		};
+
+		//dot notation to create a new property
+		obj.modelYear='2015';
+		obj['engineName']= 'V8';
+		var whatCar= obj.brandName;
+		//document.write(obj.modelYear);
+		
+		//Object methods
+
+		Object.defineProperty(obj, 'country',{
+			value:'NZ'});	
+		//document.write(obj.country);
+
+		Object.defineProperties(obj, 
+			{
+				engineSize:{value: '1800bhp'},
+				objColor:{value:'matt black'}
+			});
+		//document.write(obj.objColor);
+
+		//All blacks
+
+		var abJonah={
+			team:'All Blacks',
+			firstName:'Jonah',
+			lastName: 'Lomu',
+			sayName: function(){
+				return 'My name is ' + this.firstName + ' ' +this.lastName + '.';
+					}
+		};
+		//Invoke method
+		//document.write(abJonah.sayName());
+		//Object.create(abJonah) is going to be a prototype which makes its properties accessible for abFitzy object
+		var abFitzy = Object.create(abJonah, {
+			firstName:{value:'Sean'},
+			lastName: {value:'Fitzpatrick'},
+			profession: { value:'Rugby Player'},
+
+			captainsSpeech:{
+				value: function(person){
+					return 'What a game ' +this.profession + ' was the winner on the day. God bless the ' + person.team + '.';
+				}
+			}
+
+		});
+		//prototypes: leans on other objects and can access the properties of other objects passed on object creation. 
+		//document.write(abFitzy.captainsSpeech(abFitzy));
+		//onclick event on button to execute document.write within myFunction()
+		function myFunction(){
+			document.write(abFitzy.captainsSpeech(abFitzy));
+		} 
+
+	</script>
+</body>
+</html>

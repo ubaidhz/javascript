@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS-Patterns-2</title>
+</head>
+<body>
+	<script>
+
+
+	//Creating an Object
+	var obj = {
+		firstName: 'Jared',
+		lastName: 'Neems',
+	};
+
+
+	//Setting Values
+	obj.middleName = 'Not Telling';
+	obj['nickName'] = 'Hulk Hogan';
+
+	//Retreiving properties
+	var nickName = obj.middleName;
+
+
+	//Object methods
+	Object.defineProperty(obj, 'country', {
+		value: 'NZ'
+	});
+	
+	Object.defineProperties(obj, {	
+		faveFood: { value: 'Pizza' },	
+		faveColor: { value: 'Purple'}
+	});
+
+
+
+	//The create method
+	//Here we have another object literal. 
+	var abJonah = {
+		team: 'AllBlacks',
+		firstName: 'Jonah',
+		lastName: 'Lomu',
+		sayName: function(){
+			return 'My name is ' + this.firstName + ' ' + this.lastName + '.';
+		}
+
+	};
+
+
+	//Within curly brackets are called value descriptors
+	var abRichie = Object.create(abJonah, {
+		firstName: { value: 'Richie' },
+		lastName: { value: 'Mccaw' },
+		profession: { value: 'Rugby'},
+		captainsSpeech: {
+			value: function(person){
+				return ' What a game ' + this.profession + ' was the winner on the day. God Bless the ' + person.team + '.'; 
+			}
+
+		}
+
+	});
+
+
+
+
+	console.log(nickName);
+	alert(abJonah.sayName());
+	alert(abRichie.sayName() + abRichie.captainsSpeech(abRichie));
+
+
+	</script>
+</body>
+</html>
